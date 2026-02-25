@@ -1,0 +1,37 @@
+{
+  "name": "water-life",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.9",
+    "@react-google-maps/api": "^2.20.8",
+    "autoprefixer": "^10.4.21",
+    "axios": "^1.13.2",
+    "bootstrap": "^5.3.8",
+    "lucide-react": "^0.474.0",
+    "next": "^16.1.0",
+    "next-auth": "^4.24.13",
+    "notistack": "^3.0.2",
+    "react": "18.2.0",
+    "react-bootstrap": "^2.10.10",
+    "react-custom-roulette": "^1.4.1",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^7.9.5",
+    "react-step-wizard": "^5.3.11",
+    "sass": "^1.97.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "typescript": "^5"
+  }
+}
