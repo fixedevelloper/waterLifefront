@@ -48,112 +48,117 @@ export default function AddAgentPage() {
     };
 
     return (
-        <div className="tf-container">
-            <div className="wg-box box-quick-trade mb-32">
-                <div className="title fw-bold">
-                    <span className='label-01'>Ajouter un transporteur</span>
+        <div className="container-fluid mt-4">
+            <div className="card shadow-sm">
+
+                <div className="card-header fw-bold">
+                    Ajouter un transporteur
                 </div>
 
-                <div className="content">
+                <div className="card-body">
+
                     {error && <div className="alert alert-danger">{error}</div>}
 
                     <form onSubmit={handleSubmit}>
-                        <div className="quick-trade-wrap">
 
-                            <div className="quick-trade-list">
+                        <div className="row g-3">
 
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Nom complet</div>
-                                    <input
-                                        type="text"
-                                        placeholder="Nom du transporteur"
-                                        className="quick-trade-input style-1"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        required
-                                    />
-                                </div>
-
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Téléphone</div>
-                                    <input
-                                        type="tel"
-                                        placeholder="Ex: 699123456"
-                                        className="quick-trade-input style-1"
-                                        value={phone}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        required
-                                    />
-                                </div>
-
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Email</div>
-                                    <input
-                                        type="email"
-                                        placeholder="email@exemple.com"
-                                        className="quick-trade-input style-1"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-
-                            </div>
-                            <div className="tf-cart-checkbox style-3 mb-5">
-                                <div className="tf-checkbox-wrapp">
-                                    <input
-                                        className="checkbox-item"
-                                        type="checkbox"
-                                        checked={canCollect}
-                                        onChange={() => setCanCollect(!canCollect)}
-                                        id="isActiveCheck"
-                                    />
-                                    <div><i className="icon-check" /></div>
-                                </div>
-                                <div className="f12-medium text-GrayDark">
-                                    Peut effectuer la collecte?
-                                </div>
-                            </div>
-                            <div className="tf-cart-checkbox style-3 mb-5">
-                                <div className="tf-checkbox-wrapp">
-                                    <input
-                                        className="checkbox-item"
-                                        type="checkbox"
-                                        checked={canDeliver}
-                                        onChange={() => setCanDeliver(!canDeliver)}
-                                        id="isActiveCheck"
-                                    />
-                                    <div><i className="icon-check" /></div>
-                                </div>
-                                <div className="f12-medium text-GrayDark">
-                                    Peut effectuer les livraison?
-                                </div>
-                            </div>
-                            <div className="tf-cart-checkbox style-3 mb-5">
-                                <div className="tf-checkbox-wrapp">
-                                    <input
-                                        className="checkbox-item"
-                                        type="checkbox"
-                                        checked={isActive}
-                                        onChange={() => setIsActive(!isActive)}
-                                        id="isActiveCheck"
-                                    />
-                                    <div><i className="icon-check" /></div>
-                                </div>
-                                <div className="f12-medium text-GrayDark">Actif</div>
+                            {/* Nom */}
+                            <div className="col-md-4">
+                                <label className="form-label">Nom complet</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Nom du transporteur"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                />
                             </div>
 
-                            <div className="bottom-button">
-                                <button
-                                    type="submit"
-                                    className="btn-buy f12-bold w-100"
-                                    disabled={loading}
-                                >
-                                    {loading ? "Ajout en cours..." : "Ajouter le transporteur"}
-                                </button>
+                            {/* Téléphone */}
+                            <div className="col-md-4">
+                                <label className="form-label">Téléphone</label>
+                                <input
+                                    type="tel"
+                                    className="form-control"
+                                    placeholder="Ex: 699123456"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            {/* Email */}
+                            <div className="col-md-4">
+                                <label className="form-label">Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="email@exemple.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
                             </div>
 
                         </div>
+
+                        {/* CHECKBOXES */}
+                        <div className="mt-4">
+
+                            <div className="form-check mb-2">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={canCollect}
+                                    onChange={() => setCanCollect(!canCollect)}
+                                    id="canCollect"
+                                />
+                                <label className="form-check-label" htmlFor="canCollect">
+                                    Peut effectuer la collecte ?
+                                </label>
+                            </div>
+
+                            <div className="form-check mb-2">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={canDeliver}
+                                    onChange={() => setCanDeliver(!canDeliver)}
+                                    id="canDeliver"
+                                />
+                                <label className="form-check-label" htmlFor="canDeliver">
+                                    Peut effectuer la livraison ?
+                                </label>
+                            </div>
+
+                            <div className="form-check mb-3">
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={isActive}
+                                    onChange={() => setIsActive(!isActive)}
+                                    id="isActive"
+                                />
+                                <label className="form-check-label" htmlFor="isActive">
+                                    Actif
+                                </label>
+                            </div>
+
+                        </div>
+
+                        {/* BUTTON */}
+                        <div className="d-grid">
+                            <button
+                                type="submit"
+                                className="btn btn-primary"
+                                disabled={loading}
+                            >
+                                {loading ? "Ajout en cours..." : "Ajouter le transporteur"}
+                            </button>
+                        </div>
+
                     </form>
                 </div>
             </div>

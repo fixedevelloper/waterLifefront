@@ -83,76 +83,81 @@ export default function EditProductPage(props: EditProductPageProps) {
     if (fetching) return <div>Chargement du produit...</div>;
 
     return (
-        <div className="tf-container">
-            <div className="wg-box box-quick-trade mb-32">
-                <div className="title fw-bold">
-                    <span className='label-01'>{id ? "Modifier le produit" : "Ajouter un produit"}</span>
+        <div className="container-fluid mt-4">
+            <div className="card">
+                <div className="card-header">
+                    <h5>{id ? "Modifier le produit" : "Ajouter un produit"}</h5>
                 </div>
-                <div className="content">
+                <div className="card-body">
                     {error && <div className="alert alert-danger">{error}</div>}
+
                     <form onSubmit={handleSubmit}>
-                        <div className="quick-trade-wrap">
-                            <div className="quick-trade-list">
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Nom du produit</div>
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        className="quick-trade-input style-1"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        required
-                                        aria-required="true"
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Volume (litres)</div>
-                                    <input
-                                        type="number"
-                                        placeholder=""
-                                        className="quick-trade-input style-1"
-                                        value={volume}
-                                        onChange={(e) => setVolume(Number(e.target.value))}
-                                        required
-                                        min={0}
-                                        aria-required="true"
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <div className="f12-medium text-Primary title">Prix de base (FCFA)</div>
-                                    <input
-                                        type="number"
-                                        placeholder=""
-                                        className="quick-trade-input style-1"
-                                        value={basePrice}
-                                        onChange={(e) => setBasePrice(Number(e.target.value))}
-                                        required
-                                        min={0}
-                                        aria-required="true"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="tf-cart-checkbox style-3 mb-5">
-                                <div className="tf-checkbox-wrapp">
-                                    <input
-                                        className="checkbox-item"
-                                        type="checkbox"
-                                        checked={isActive}
-                                        onChange={() => setIsActive(!isActive)}
-                                        id="isActiveCheck"
-                                    />
-                                    <div><i className="icon-check"/></div>
-                                </div>
-                                <div className="f12-medium text-GrayDark">Actif</div>
-                            </div>
-
-                            <div className="bottom-button">
-                                <button type="submit" className="btn-buy f12-bold w-100" disabled={loading}>
-                                    {loading ? (id ? "Modification en cours..." : "Ajout en cours...") : (id ? "Modifier le produit" : "Ajouter le produit")}
-                                </button>
-                            </div>
+                        <div className="mb-3">
+                            <label htmlFor="productName" className="form-label">
+                                Nom du produit
+                            </label>
+                            <input
+                                type="text"
+                                id="productName"
+                                className="form-control"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
                         </div>
+
+                        <div className="mb-3">
+                            <label htmlFor="productVolume" className="form-label">
+                                Volume (litres)
+                            </label>
+                            <input
+                                type="number"
+                                id="productVolume"
+                                className="form-control"
+                                value={volume}
+                                onChange={(e) => setVolume(Number(e.target.value))}
+                                min={0}
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <label htmlFor="basePrice" className="form-label">
+                                Prix de base (FCFA)
+                            </label>
+                            <input
+                                type="number"
+                                id="basePrice"
+                                className="form-control"
+                                value={basePrice}
+                                onChange={(e) => setBasePrice(Number(e.target.value))}
+                                min={0}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-check mb-3">
+                            <input
+                                className="form-check-input"
+                                type="checkbox"
+                                id="isActiveCheck"
+                                checked={isActive}
+                                onChange={() => setIsActive(!isActive)}
+                            />
+                            <label className="form-check-label" htmlFor="isActiveCheck">
+                                Actif
+                            </label>
+                        </div>
+
+                        <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+                            {loading
+                                ? id
+                                    ? "Modification en cours..."
+                                    : "Ajout en cours..."
+                                : id
+                                    ? "Modifier le produit"
+                                    : "Ajouter le produit"}
+                        </button>
                     </form>
                 </div>
             </div>

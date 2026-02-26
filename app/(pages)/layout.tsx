@@ -3,7 +3,8 @@
 import "./../globals.css";
 import React, { useState, useEffect, useRef } from "react";
 import SectionMenuLeft from "../components/sectionMenuLeft";
-import SectionHeaderTitle from "../components/sectionHeaderTitle";
+import {Header} from "../components/layouts/header";
+import {SiderBar} from "../components/layouts/siderBar";
 
 export default function PageLayout({
                                        children,
@@ -15,28 +16,12 @@ export default function PageLayout({
     const toggleMenu = () => setCollapsed(!collapsed);
 
     return (
-        <div id="wrapper">
-            <div id="page">
-                <div className={`layout-wrap loader-off ${collapsed ? "full-width" : ""}`}>
+        <div id="main-wrapper" className="show">
+            <Header />
 
-                    <SectionMenuLeft collapsed={collapsed}  toggleMenuMin={toggleMenu} />
-
-                    <div className="section-content-right">
-
-                        {/* titre dynamique */}
-                        <SectionHeaderTitle toggleMenu={toggleMenu} />
-
-                        <div className="main-content">
-                            <div className="main-content-inner">
-                                <div className="main-content-wrap">
-                                    <div className="tf-container">
-                                        {children}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <div className="content-body">
+                <div className="container-fluid">
+                    {children}
                 </div>
             </div>
         </div>

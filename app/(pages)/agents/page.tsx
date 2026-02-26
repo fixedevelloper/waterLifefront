@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {ApiResponse, ProductType, ResponsePaginate, User} from "../../types/types";
 import axiosServices from "../../lib/axios";
 import Link from "next/link";
@@ -35,81 +35,164 @@ export default function AgentPage() {
         return <div>Chargement des agents...</div>;
     }
 
+    function cancelAgent() {
+
+    }
+
     return (
-        <div className="tf-container">
-
-            <h3 className='mb-10'>Listes des transporteurs</h3>
-            {/* -------------------- Topbar -------------------- */}
-            <div className="topbar-search d-flex align-items-center mb-3">
-                <form className="form-search flex-grow-1 d-flex" onSubmit={e => e.preventDefault()}>
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="show-search style-1 flex-grow-1"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        name="name"
-                        aria-required="true"
-                        required
-                    />
-                    <button className="button-submit" type="submit">
-                        <i className="icon-search-normal1"></i>
-                    </button>
-                </form>
-
-                <div className="ms-3">
-                    <Link href="/agents/add" className="tf-button style-2 f12-bold d-md-flex d-none">
-                        <i className="icon icon-add"/> Ajouter
-                    </Link>
+        <>
+            <div className="row page-titles mx-0">
+                <div className="col-sm-6 p-md-0">
+                    <div className="welcome-text">
+                        <h4>Transporteurs!</h4>
+                        <p className="mb-0">Liste des transporteurs</p>
+                    </div>
+                </div>
+                <div className="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item">
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li className="breadcrumb-item active">
+                            <a href="#">Transporteurs</a>
+                        </li>
+                    </ol>
                 </div>
             </div>
 
-            {/* -------------------- Table -------------------- */}
-            <div className="table-list-transaction">
-                <div className="list-transaction-head d-flex text-white fw-bold mb-2">
-                    <div className="col">ID</div>
-                    <div className="col">Nom complet</div>
-                    <div className="col">Email</div>
-                    <div className="col">Téléphone</div>
-                    <div className="col">Status</div>
-                    <div className="col">Actions</div>
-                </div>
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="mb-3 d-flex justify-content-between align-items-center">
+                                <input
+                                    type="text"
+                                    className="form-control me-2"
+                                    placeholder="Rechercher un transporteur..."
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    style={{ flex: 1 }}
+                                />
+                                <Link className="btn btn-primary" href="/agents/add">
+                                    Ajouter un transporteur
+                                </Link>
+                            </div>
 
-                <table className="list-transaction-content w-100">
-                    <tbody>
-                    {filteredAgents.map((agent) => (
-                        <tr key={agent.id} className="tf-table-item text-start">
-                            <td className='tf-cart-checkbox'>{agent.id}</td>
-                            <td>{agent.name}</td>
-                            <td>{agent.email ?? "-"}</td>
-                            <td>{agent.phone ?? "-"}</td>
-                            <td>
-                                <div className={`box-status ${
-                                    agent.is_active ? "bg-YellowGreen" : "bg-LightGray"
-                                } d-flex align-items-center`}>
-                                    {agent.is_active && <i className="icon icon-check me-1"/>}
-                                </div>
-                            </td>
-                            <td>
-                                <Dropdown className="dropdown default">
-                                    <Dropdown.Toggle variant="secondary" id={`dropdown-${agent.id}`}>
-                                        <span className="icon-more"/>
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu align="end">
-                                        <Dropdown.Item as={Link} href={`/agents/${agent.id}/edit`}>
-                                            Modifier
-                                        </Dropdown.Item>
-                                        <Dropdown.Item as={Link} href={`/agents/cancel/${agent.id}`}>
-                                            Supprimer
-                                        </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                            <div className="table-responsive">
+                                <table className="table table-sm mb-0 table-striped student-tbl">
+                                    <thead>
+                                    <tr>
+                                        <th className="pe-3">
+                                            <div className="form-check custom-checkbox mx-2">
+                                                <input type="checkbox" className="form-check-input" id="checkAll" />
+                                                <label className="form-check-label"/>
+                                            </div>
+                                        </th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th className="ps-5" style={{ minWidth: '200px' }}>
+                                            Vehicule
+                                        </th>
+                                        <th>Joined</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {filteredAgents.map((customer) => (
+                                        <tr key={customer.id} className="btn-reveal-trigger">
+                                            <td className="py-2">
+                                                <div className="form-check custom-checkbox mx-2">
+                                                    <input type="checkbox" className="form-check-input" />
+                                                    <label className="form-check-label"></label>
+                                                </div>
+                                            </td>
+                                            <td className="py-3">
+                                                <a href="#">
+                                                    <div className="media d-flex align-items-center">
+                                                        <div className="avatar avatar-xl me-2">
+                                                            <div>
+                                                                <img
+                                                                    className="rounded-circle img-fluid"
+                                                                    src={customer.avatar || '/images/avatar/default.png'}
+                                                                    width={30}
+                                                                    alt={customer.name}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="media-body">
+                                                            <h5 className="mb-0 fs--1">{customer.name}</h5>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td className="py-2">
+                                                <a href={`mailto:${customer.email}`}>{customer.email}</a>
+                                            </td>
+                                            <td className="py-2">
+                                                <a href={`tel:${customer.phone}`}>{customer.phone}</a>
+                                            </td>
+                                            <td className="py-2 ps-5">{customer.billingAddress}</td>
+                                            <td className="py-2 ps-5">{formatDate(customer.created_at)}</td>
+                                            <td className="py-2 text-end">
+                                                <Dropdown className="text-end">
+                                                    <Dropdown.Toggle
+                                                        as="div" // 👈 on utilise un div pour personnaliser le contenu
+                                                        className="d-inline-block"
+                                                        id={`orderDropdown${customer.id}`}
+                                                        style={{ cursor: "pointer" }}
+                                                    >
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-success sharp"
+                                                            style={{ padding: "6px 10px", borderRadius: "8px" }}
+                                                        >
+                                                            <svg
+                                                                width="20px"
+                                                                height="20px"
+                                                                viewBox="0 0 24 24"
+                                                                version="1.1"
+                                                            >
+                                                                <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24"></rect>
+                                                                    <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                                    <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                                    <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                                                </g>
+                                                            </svg>
+                                                        </button>
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item>
+                                                            <Link href={`/agents/${customer.id}/edit`}>
+                                                                Modifier
+                                                            </Link>
+
+                                                        </Dropdown.Item>
+                                                        <Dropdown.Divider />
+                                                        <Dropdown.Item onClick={cancelAgent} className="text-danger">
+                                                            Annuler
+                                                        </Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {filteredAgents.length === 0 && (
+                                        <tr>
+                                            <td colSpan={7} className="text-center py-4">
+                                                Aucun client trouvé.
+                                            </td>
+                                        </tr>
+                                    )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

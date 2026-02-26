@@ -1,6 +1,4 @@
-@import "scss/app.scss";
-@import "font/fonts.css";
-@import "icon/style.css";
+@import "scss/main.scss";
 
 .sign-in-box .left {
     width: 100% !important;
@@ -36,4 +34,99 @@
 
 .timeline-content {
     font-size: 14px;
+}
+
+/* Sidebar par défaut */
+.deznav {
+    transition: all 0.3s ease;
+    overflow-y: auto;
+}
+
+/* Sidebar fermé */
+.deznav.closed {
+    transform: translateX(-280px);
+}
+
+/* Sidebar ouvert */
+.deznav.open {
+    transform: translateX(0);
+}
+.content-body{
+    min-height:1113px
+}
+.deznav.closed ~ .content-body {
+    margin-left: 5rem;
+}
+.deznav .metismenu > li {
+    padding: 0 30px;
+}
+.deznav .metismenu > li > a {
+    font-size: 16px;
+    padding: 20px 20px;
+    border-radius: 0.75rem;
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.deznav .metismenu ul a:hover {
+    padding-left: 5.5rem;
+}
+.deznav .metismenu ul a::before {
+    content: "";
+    height: 2px;
+    width: 6px;
+    background: rgba(54, 48, 98, 0.5);
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.dropdown-menu {
+    font-size: inherit;
+    border: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 0 3.125rem 0 rgba(82, 63, 105, 0.15);
+    margin-top: 0;
+}
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    margin-top: 0px;
+    font-size: 0.875rem;
+    color: #7e7e7e;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.75rem;
+}
+.card {
+    height: auto;
+}
+@media only screen and (max-width: 1350px) {
+    .content-body {
+        margin-left: 1rem;
+    }
+    .deznav.closed ~ .content-body {
+        margin-left: 0rem;
+    }
+    .header {
+
+        padding: 0 0 0 1rem;
+
+    }
 }

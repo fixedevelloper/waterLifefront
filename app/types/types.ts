@@ -100,6 +100,10 @@ export interface User {
   phone: string;
   email: string;
   is_active: boolean;
+  created_at?: string;
+  avatar?: string;
+  forage?: string;
+  billingAddress?:string
 }
 
 export interface Order {
