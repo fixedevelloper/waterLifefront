@@ -5,6 +5,7 @@ import {ApiResponse, ProductType, ResponsePaginate, User} from "../../types/type
 import axiosServices from "../../lib/axios";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Link from "next/link";
+import {formatDate} from "../../utils/hook";
 
 
 export default function ManagerPage() {

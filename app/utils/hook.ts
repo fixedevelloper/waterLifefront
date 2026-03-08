@@ -1,4 +1,4 @@
-const formatDate = (date?: string) => {
+export const formatDate = (date?: string) => {
     if (!date) return '-'
     return new Date(date).toLocaleDateString('fr-FR', {
         day: '2-digit',
